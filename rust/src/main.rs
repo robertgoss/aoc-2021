@@ -1,5 +1,6 @@
 mod sonar;
 mod movement;
+mod binary;
 
 mod io;
 
@@ -7,6 +8,7 @@ mod challenge {
     use super::io as io;
     use super::sonar as sonar;
     use super::movement as movement;
+    use super::binary as binary;
 
     fn challenge_1() {
         let data = io::input_as_list(1);
@@ -32,12 +34,28 @@ mod challenge {
         println!("{}", res.0 * res.1);
     }
 
+    fn challenge_5() {
+        let data = io::input_from_binary(3);
+        let gamma = binary::gamma(&data);
+        let epsilon = binary::epsilon(&data);
+        println!("{}", gamma * epsilon);
+    }
+
+    fn challenge_6() {
+        let data = io::input_from_binary(3);
+        let oxygen = binary::oxygen(&data);
+        let carbon = binary::carbon(&data);
+        println!("{}", oxygen * carbon);
+    }
+
     pub fn challenge(num : u8) {
         match num {
             1 => challenge_1(),
             2 => challenge_2(),
             3 => challenge_3(),
             4 => challenge_4(),
+            5 => challenge_5(),
+            6 => challenge_6(),
             _ => () 
         }
     }

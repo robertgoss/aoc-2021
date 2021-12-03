@@ -21,3 +21,12 @@ pub fn input_as_commands(day: i8) -> Vec<movement::Command> {
         |s| movement::Command::from_string(&s.expect("Read failure")).unwrap()
     ).collect()
 }
+
+pub fn input_from_binary(day: i8) -> Vec<u64> {
+    let filename = format!("../data/day-{}.txt", day);
+    let file = File::open(filename).expect("Issue opening file");
+    let reader = BufReader::new(&file);
+    reader.lines().map(
+        |s| u64::from_str_radix(&s.expect("Read failure"), 2).expect("Parse error")
+    ).collect()
+}
