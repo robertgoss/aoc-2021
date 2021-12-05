@@ -1,6 +1,7 @@
 mod sonar;
 mod movement;
 mod binary;
+mod vents;
 
 mod io;
 
@@ -9,6 +10,7 @@ mod challenge {
     use super::sonar as sonar;
     use super::movement as movement;
     use super::binary as binary;
+    use super::vents as vents;
 
     fn challenge_1() {
         let data = io::input_as_list(1);
@@ -48,6 +50,18 @@ mod challenge {
         println!("{}", oxygen * carbon);
     }
 
+    fn challenge_9() {
+        let data = io::input_as_vents(5);
+        let res = vents::get_overlap_num_cardinal(&data);
+        println!("{}", res);
+    }
+
+    fn challenge_10() {
+        let data = io::input_as_vents(5);
+        let res = vents::get_overlap_num(&data);
+        println!("{}", res);
+    }
+
     pub fn challenge(num : u8) {
         match num {
             1 => challenge_1(),
@@ -56,6 +70,8 @@ mod challenge {
             4 => challenge_4(),
             5 => challenge_5(),
             6 => challenge_6(),
+            9 => challenge_9(),
+            10 => challenge_10(),
             _ => () 
         }
     }

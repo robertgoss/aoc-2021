@@ -3,6 +3,7 @@ use std::io::BufReader;
 use std::io::BufRead;
 
 use super::movement as movement;
+use super::vents as vents;
 
 pub fn input_as_list(day: i8) -> Vec<i64> {
     let filename = format!("../data/day-{}.txt", day);
@@ -28,5 +29,14 @@ pub fn input_from_binary(day: i8) -> Vec<u64> {
     let reader = BufReader::new(&file);
     reader.lines().map(
         |s| u64::from_str_radix(&s.expect("Read failure"), 2).expect("Parse error")
+    ).collect()
+}
+
+pub fn input_as_vents(day: i8) -> Vec<vents::Vent> {
+    let filename = format!("../data/day-{}.txt", day);
+    let file = File::open(filename).expect("Issue opening file");
+    let reader = BufReader::new(&file);
+    reader.lines().map(
+        |s| vents::Vent::from_string(&s.expect("Read failure")).unwrap()
     ).collect()
 }
