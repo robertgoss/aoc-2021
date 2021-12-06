@@ -5,6 +5,7 @@ mod movement;
 mod binary;
 mod bingo;
 mod vents;
+mod fish;
 
 mod io;
 
@@ -14,6 +15,7 @@ mod challenge {
     use super::movement as movement;
     use super::binary as binary;
     use super::vents as vents;
+    use super::fish as fish;
 
     fn challenge_1() {
         let data = io::input_as_list(1);
@@ -77,6 +79,18 @@ mod challenge {
         println!("{}", res);
     }
 
+    fn challenge_11() {
+        let data = io::input_as_fish(6);
+        let res = fish::count_after(&data, 79);
+        println!("{}", res);
+    }
+
+    fn challenge_12() {
+        let data = io::input_as_fish(6);
+        let res = fish::count_after(&data, 255);
+        println!("{}", res);
+    }
+
     pub fn challenge(num : u8) {
         match num {
             1 => challenge_1(),
@@ -89,6 +103,8 @@ mod challenge {
             8 => challenge_8(),
             9 => challenge_9(),
             10 => challenge_10(),
+            11 => challenge_11(),
+            12 => challenge_12(),
             _ => () 
         }
     }
