@@ -1,6 +1,9 @@
+#![feature(option_result_contains)]
+
 mod sonar;
 mod movement;
 mod binary;
+mod bingo;
 mod vents;
 
 mod io;
@@ -50,6 +53,18 @@ mod challenge {
         println!("{}", oxygen * carbon);
     }
 
+    fn challenge_7() {
+        let mut data = io::input_as_game(4);
+        let res = data.play_first();
+        println!("{}", res);
+    }
+
+    fn challenge_8() {
+        let mut data = io::input_as_game(4);
+        let res = data.play_last();
+        println!("{}", res);
+    }
+
     fn challenge_9() {
         let data = io::input_as_vents(5);
         let res = vents::get_overlap_num_cardinal(&data);
@@ -70,6 +85,8 @@ mod challenge {
             4 => challenge_4(),
             5 => challenge_5(),
             6 => challenge_6(),
+            7 => challenge_7(),
+            8 => challenge_8(),
             9 => challenge_9(),
             10 => challenge_10(),
             _ => () 

@@ -3,6 +3,7 @@ use std::io::BufReader;
 use std::io::BufRead;
 
 use super::movement as movement;
+use super::bingo as bingo;
 use super::vents as vents;
 
 pub fn input_as_list(day: i8) -> Vec<i64> {
@@ -39,4 +40,14 @@ pub fn input_as_vents(day: i8) -> Vec<vents::Vent> {
     reader.lines().map(
         |s| vents::Vent::from_string(&s.expect("Read failure")).unwrap()
     ).collect()
+}
+
+pub fn input_as_game(day: i8) -> bingo::Game {
+    let filename = format!("../data/day-{}.txt", day);
+    let file = File::open(filename).expect("Issue opening file");
+    let reader = BufReader::new(&file);
+    let lines : Vec<String> = reader.lines().map(
+        |s| s.expect("Read failure")
+    ).collect();
+    bingo::Game::from_lines(lines).unwrap()
 }
