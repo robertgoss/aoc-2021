@@ -6,6 +6,7 @@ import qualified Data.Text as T
 import qualified Data.Text.IO as TI
 import qualified Data.Text.Read as TR
 import Data.Either.Combinators (swapEither)
+import System.Environment (getArgs)
 
 readInput :: Int -> IO T.Text
 readInput day = TI.readFile path
@@ -21,14 +22,17 @@ parseLines = mapM parseInt . T.lines
 
 challenge :: Int -> T.Text -> Err Int
 challenge 1 = fmap numberIncreasing . parseLines
+challenge 2 = fmap numberIncreasingWindow . parseLines
 challenge _ = const (Left "Unknown challenge")
 
 
 main :: IO ()
 main = do 
+    args <- getArgs
+    let num :: Int
+        num = read $ head args
     input <- readInput ((num+1) `div` 2)
     let res = challenge num input
     case challenge num input of 
         Right res -> print res
         Left err -> print err
-  where num = 1
