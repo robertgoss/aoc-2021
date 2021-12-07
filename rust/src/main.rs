@@ -6,6 +6,7 @@ mod binary;
 mod bingo;
 mod vents;
 mod fish;
+mod crabs;
 
 mod io;
 
@@ -16,6 +17,7 @@ mod challenge {
     use super::binary as binary;
     use super::vents as vents;
     use super::fish as fish;
+    use super::crabs as crabs;
 
     fn challenge_1() {
         let data = io::input_as_list(1);
@@ -91,6 +93,18 @@ mod challenge {
         println!("{}", res);
     }
 
+    fn challenge_13() {
+        let data = io::input_as_crabs(7);
+        let res = crabs::minimum_distance(&data);
+        println!("{}", res);
+    }
+
+    fn challenge_14() {
+        let data = io::input_as_crabs(7);
+        let res = crabs::minimum_distance_quad(&data);
+        println!("{}", res);
+    }
+
     pub fn challenge(num : u8) {
         match num {
             1 => challenge_1(),
@@ -105,6 +119,8 @@ mod challenge {
             10 => challenge_10(),
             11 => challenge_11(),
             12 => challenge_12(),
+            13 => challenge_13(),
+            14 => challenge_14(),
             _ => () 
         }
     }

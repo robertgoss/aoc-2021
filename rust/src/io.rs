@@ -6,6 +6,7 @@ use super::movement as movement;
 use super::bingo as bingo;
 use super::vents as vents;
 use super::fish as fish;
+use super::crabs as crabs;
 
 pub fn input_as_list(day: i8) -> Vec<i64> {
     let filename = format!("../data/day-{}.txt", day);
@@ -60,5 +61,15 @@ pub fn input_as_fish(day: i8) -> Vec<fish::Fish> {
     let line = reader.lines().next().unwrap().expect("Read failure");
     line.split(',').map(
         |s| fish::Fish{ remaining : s.parse::<u64>().unwrap() }
+    ).collect()
+}
+
+pub fn input_as_crabs(day: i8) -> Vec<crabs::Crab> {
+    let filename = format!("../data/day-{}.txt", day);
+    let file = File::open(filename).expect("Issue opening file");
+    let reader = BufReader::new(&file);
+    let line = reader.lines().next().unwrap().expect("Read failure");
+    line.split(',').map(
+        |s| crabs::Crab{ pos : s.parse::<i64>().unwrap() }
     ).collect()
 }
