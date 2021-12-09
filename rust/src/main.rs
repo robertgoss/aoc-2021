@@ -1,4 +1,5 @@
 #![feature(option_result_contains)]
+#![feature(map_first_last)]
 
 mod sonar;
 mod movement;
@@ -7,6 +8,8 @@ mod bingo;
 mod vents;
 mod fish;
 mod crabs;
+mod displays;
+mod heights;
 
 mod io;
 
@@ -18,6 +21,7 @@ mod challenge {
     use super::vents as vents;
     use super::fish as fish;
     use super::crabs as crabs;
+    use super::displays as displays;
 
     fn challenge_1() {
         let data = io::input_as_list(1);
@@ -105,6 +109,32 @@ mod challenge {
         println!("{}", res);
     }
 
+    fn challenge_15() {
+        let data = io::input_as_displays(8);
+        let res = displays::count_easy_digits(&data);
+        println!("{}", res);
+    }
+
+    fn challenge_16() {
+        let data = io::input_as_displays(8);
+        let res : usize = data.iter().map(
+            |entry| entry.output_num()
+        ).sum();
+        println!("{}", res);
+    }
+
+    fn challenge_17() {
+        let data = io::input_as_heightmap(9);
+        let res = data.total_risk();
+        println!("{}", res);
+    }
+
+    fn challenge_18() {
+        let data = io::input_as_heightmap(9);
+        let res : usize = data.largest_basins(3).iter().product();
+        println!("{}", res);
+    }
+
     pub fn challenge(num : u8) {
         match num {
             1 => challenge_1(),
@@ -121,6 +151,10 @@ mod challenge {
             12 => challenge_12(),
             13 => challenge_13(),
             14 => challenge_14(),
+            15 => challenge_15(),
+            16 => challenge_16(),
+            17 => challenge_17(),
+            18 => challenge_18(),
             _ => () 
         }
     }

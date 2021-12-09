@@ -7,6 +7,8 @@ use super::bingo as bingo;
 use super::vents as vents;
 use super::fish as fish;
 use super::crabs as crabs;
+use super::displays as displays;
+use super::heights as heights;
 
 pub fn input_as_list(day: i8) -> Vec<i64> {
     let filename = format!("../data/day-{}.txt", day);
@@ -72,4 +74,23 @@ pub fn input_as_crabs(day: i8) -> Vec<crabs::Crab> {
     line.split(',').map(
         |s| crabs::Crab{ pos : s.parse::<i64>().unwrap() }
     ).collect()
+}
+
+pub fn input_as_displays(day: i8) -> Vec<displays::Entry> {
+    let filename = format!("../data/day-{}.txt", day);
+    let file = File::open(filename).expect("Issue opening file");
+    let reader = BufReader::new(&file);
+    reader.lines().map(
+        |s| displays::Entry::from_string(&s.expect("Read failure")).unwrap()
+    ).collect()
+}
+
+pub fn input_as_heightmap(day: i8) -> heights::HeightMap {
+    let filename = format!("../data/day-{}.txt", day);
+    let file = File::open(filename).expect("Issue opening file");
+    let reader = BufReader::new(&file);
+    let lines : Vec<String> = reader.lines().map(
+        |s| s.expect("Read failure")
+    ).collect();
+    heights::HeightMap::from_lines(lines)
 }
