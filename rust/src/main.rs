@@ -10,6 +10,7 @@ mod fish;
 mod crabs;
 mod displays;
 mod heights;
+mod brackets;
 
 mod io;
 
@@ -22,6 +23,7 @@ mod challenge {
     use super::fish as fish;
     use super::crabs as crabs;
     use super::displays as displays;
+    use super::brackets as brackets;
 
     fn challenge_1() {
         let data = io::input_as_list(1);
@@ -135,6 +137,18 @@ mod challenge {
         println!("{}", res);
     }
 
+    fn challenge_19() {
+        let data = io::input_as_lines(10);
+        let res : usize = brackets::parse_score(&data);
+        println!("{}", res);
+    }
+
+    fn challenge_20() {
+        let data = io::input_as_lines(10);
+        let res : usize = brackets::parse_complete_score(&data);
+        println!("{}", res);
+    }
+
     pub fn challenge(num : u8) {
         match num {
             1 => challenge_1(),
@@ -155,6 +169,8 @@ mod challenge {
             16 => challenge_16(),
             17 => challenge_17(),
             18 => challenge_18(),
+            19 => challenge_19(),
+            20 => challenge_20(),
             _ => () 
         }
     }

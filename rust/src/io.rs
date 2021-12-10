@@ -47,13 +47,7 @@ pub fn input_as_vents(day: i8) -> Vec<vents::Vent> {
 }
 
 pub fn input_as_game(day: i8) -> bingo::Game {
-    let filename = format!("../data/day-{}.txt", day);
-    let file = File::open(filename).expect("Issue opening file");
-    let reader = BufReader::new(&file);
-    let lines : Vec<String> = reader.lines().map(
-        |s| s.expect("Read failure")
-    ).collect();
-    bingo::Game::from_lines(lines).unwrap()
+    bingo::Game::from_lines(input_as_lines(day)).unwrap()
 }
 
 pub fn input_as_fish(day: i8) -> Vec<fish::Fish> {
@@ -86,11 +80,15 @@ pub fn input_as_displays(day: i8) -> Vec<displays::Entry> {
 }
 
 pub fn input_as_heightmap(day: i8) -> heights::HeightMap {
+    heights::HeightMap::from_lines(input_as_lines(day))
+}
+
+
+pub fn input_as_lines(day: i8) -> Vec<String> {
     let filename = format!("../data/day-{}.txt", day);
     let file = File::open(filename).expect("Issue opening file");
     let reader = BufReader::new(&file);
-    let lines : Vec<String> = reader.lines().map(
+    reader.lines().map(
         |s| s.expect("Read failure")
-    ).collect();
-    heights::HeightMap::from_lines(lines)
+    ).collect()
 }
