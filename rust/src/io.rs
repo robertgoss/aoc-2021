@@ -9,6 +9,8 @@ use super::fish as fish;
 use super::crabs as crabs;
 use super::displays as displays;
 use super::heights as heights;
+use super::octopus as octopus;
+use super::caves as caves;
 
 pub fn input_as_list(day: i8) -> Vec<i64> {
     let filename = format!("../data/day-{}.txt", day);
@@ -91,4 +93,12 @@ pub fn input_as_lines(day: i8) -> Vec<String> {
     reader.lines().map(
         |s| s.expect("Read failure")
     ).collect()
+}
+
+pub fn input_as_octopus_states(day: i8) -> octopus::StateMap {
+    octopus::StateMap::from_lines(input_as_lines(day))
+}
+
+pub fn input_as_cave_systen(day: i8) -> caves::CaveSystem {
+    caves::CaveSystem::from_lines(input_as_lines(day))
 }

@@ -9,3 +9,4 @@ edition = "2021"
 [dependencies]
 itertools = "0.10.1"
 arraymap = "0.1.1"
+petgraph = "0.6.0"

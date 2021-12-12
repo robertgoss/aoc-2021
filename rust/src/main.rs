@@ -11,6 +11,8 @@ mod crabs;
 mod displays;
 mod heights;
 mod brackets;
+mod octopus;
+mod caves;
 
 mod io;
 
@@ -149,6 +151,30 @@ mod challenge {
         println!("{}", res);
     }
 
+    fn challenge_21() {
+        let mut data = io::input_as_octopus_states(11);
+        let res : usize = data.simulate(100);
+        println!("{}", res);
+    }
+
+    fn challenge_22() {
+        let mut data = io::input_as_octopus_states(11);
+        let res : usize = data.simulate_till_flash();
+        println!("{}", res);
+    }
+
+    fn challenge_23() {
+        let data = io::input_as_cave_systen(12);
+        let res : usize = data.number_paths();
+        println!("{}", res);
+    }
+
+    fn challenge_24() {
+        let data = io::input_as_cave_systen(12);
+        let res : usize = data.number_paths_single_reentry();
+        println!("{}", res);
+    }
+
     pub fn challenge(num : u8) {
         match num {
             1 => challenge_1(),
@@ -171,6 +197,10 @@ mod challenge {
             18 => challenge_18(),
             19 => challenge_19(),
             20 => challenge_20(),
+            21 => challenge_21(),
+            22 => challenge_22(),
+            23 => challenge_23(),
+            24 => challenge_24(),
             _ => () 
         }
     }
