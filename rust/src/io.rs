@@ -1,6 +1,9 @@
 use std::fs::File;
 use std::io::BufReader;
 use std::io::BufRead;
+use std::fs;
+
+use crate::polymer;
 
 use super::movement as movement;
 use super::bingo as bingo;
@@ -11,6 +14,7 @@ use super::displays as displays;
 use super::heights as heights;
 use super::octopus as octopus;
 use super::caves as caves;
+use super::folding as folding;
 
 pub fn input_as_list(day: i8) -> Vec<i64> {
     let filename = format!("../data/day-{}.txt", day);
@@ -101,4 +105,16 @@ pub fn input_as_octopus_states(day: i8) -> octopus::StateMap {
 
 pub fn input_as_cave_systen(day: i8) -> caves::CaveSystem {
     caves::CaveSystem::from_lines(input_as_lines(day))
+}
+
+pub fn input_as_folding(day : i8) -> folding::Instructions {
+    let filename = format!("../data/day-{}.txt", day);
+    let data = fs::read_to_string(filename).expect("Read failure");
+    folding::Instructions::from_string(&data).unwrap()
+}
+
+pub fn input_as_polymer(day : i8) -> polymer::PolymerProgram {
+    let filename = format!("../data/day-{}.txt", day);
+    let data = fs::read_to_string(filename).expect("Read failure");
+    polymer::PolymerProgram::from_string(&data).unwrap()
 }

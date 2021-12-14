@@ -1,5 +1,6 @@
 #![feature(option_result_contains)]
 #![feature(map_first_last)]
+#![feature(iter_intersperse)]
 
 mod sonar;
 mod movement;
@@ -13,6 +14,8 @@ mod heights;
 mod brackets;
 mod octopus;
 mod caves;
+mod folding;
+mod polymer;
 
 mod io;
 
@@ -175,6 +178,33 @@ mod challenge {
         println!("{}", res);
     }
 
+    fn challenge_25() {
+        let mut data = io::input_as_folding(13);
+        data.fold_first();
+        let res : usize = data.number_dots();
+        println!("{}", res);
+    }
+
+    fn challenge_26() {
+        let mut data = io::input_as_folding(13);
+        data.fold();
+        data.display();
+    }
+
+    fn challenge_27() {
+        let data = io::input_as_polymer(14);
+        let (max, min) = data.calculate_common(10);
+        let res = max - min;
+        println!("{}", res);
+    }
+
+    fn challenge_28() {
+        let data = io::input_as_polymer(14);
+        let (max, min) = data.calculate_common(40);
+        let res = max - min;
+        println!("{}", res);
+    }
+
     pub fn challenge(num : u8) {
         match num {
             1 => challenge_1(),
@@ -201,6 +231,10 @@ mod challenge {
             22 => challenge_22(),
             23 => challenge_23(),
             24 => challenge_24(),
+            25 => challenge_25(),
+            26 => challenge_26(),
+            27 => challenge_27(),
+            28 => challenge_28(),
             _ => () 
         }
     }
