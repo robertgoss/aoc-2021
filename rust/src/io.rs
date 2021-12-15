@@ -3,7 +3,6 @@ use std::io::BufReader;
 use std::io::BufRead;
 use std::fs;
 
-use crate::polymer;
 
 use super::movement as movement;
 use super::bingo as bingo;
@@ -15,6 +14,8 @@ use super::heights as heights;
 use super::octopus as octopus;
 use super::caves as caves;
 use super::folding as folding;
+use super::pathfind as pathfind;
+use super::polymer as polymer;
 
 pub fn input_as_list(day: i8) -> Vec<i64> {
     let filename = format!("../data/day-{}.txt", day);
@@ -117,4 +118,8 @@ pub fn input_as_polymer(day : i8) -> polymer::PolymerProgram {
     let filename = format!("../data/day-{}.txt", day);
     let data = fs::read_to_string(filename).expect("Read failure");
     polymer::PolymerProgram::from_string(&data).unwrap()
+}
+
+pub fn input_as_risk_map(day: i8) -> pathfind::RiskMap {
+    pathfind::RiskMap::from_lines(input_as_lines(day))
 }

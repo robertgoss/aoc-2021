@@ -16,6 +16,7 @@ mod octopus;
 mod caves;
 mod folding;
 mod polymer;
+mod pathfind;
 
 mod io;
 
@@ -29,6 +30,7 @@ mod challenge {
     use super::crabs as crabs;
     use super::displays as displays;
     use super::brackets as brackets;
+    use super::pathfind::Pathfinder;
 
     fn challenge_1() {
         let data = io::input_as_list(1);
@@ -205,6 +207,19 @@ mod challenge {
         println!("{}", res);
     }
 
+    fn challenge_29() {
+        let data = io::input_as_risk_map(15);
+        let res = data.safest_path();
+        println!("{}", res);
+    }
+
+    fn challenge_30() {
+        let data = io::input_as_risk_map(15);
+        let enlarged = data.enlarge(5);
+        let res = enlarged.safest_path();
+        println!("{}", res);
+    }
+
     pub fn challenge(num : u8) {
         match num {
             1 => challenge_1(),
@@ -235,6 +250,8 @@ mod challenge {
             26 => challenge_26(),
             27 => challenge_27(),
             28 => challenge_28(),
+            29 => challenge_29(),
+            30 => challenge_30(),
             _ => () 
         }
     }
