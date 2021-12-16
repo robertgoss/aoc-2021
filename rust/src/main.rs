@@ -17,6 +17,7 @@ mod caves;
 mod folding;
 mod polymer;
 mod pathfind;
+mod packet;
 
 mod io;
 
@@ -220,6 +221,18 @@ mod challenge {
         println!("{}", res);
     }
 
+    fn challenge_31() {
+        let data = io::input_as_packet(16);
+        let res = data.version_sum();
+        println!("{}", res);
+    }
+
+    fn challenge_32() {
+        let data = io::input_as_packet(16);
+        let res = data.evaluate();
+        println!("{}", res);
+    }
+
     pub fn challenge(num : u8) {
         match num {
             1 => challenge_1(),
@@ -252,6 +265,8 @@ mod challenge {
             28 => challenge_28(),
             29 => challenge_29(),
             30 => challenge_30(),
+            31 => challenge_31(),
+            32 => challenge_32(),
             _ => () 
         }
     }

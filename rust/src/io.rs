@@ -16,6 +16,7 @@ use super::caves as caves;
 use super::folding as folding;
 use super::pathfind as pathfind;
 use super::polymer as polymer;
+use super::packet as packet;
 
 pub fn input_as_list(day: i8) -> Vec<i64> {
     let filename = format!("../data/day-{}.txt", day);
@@ -122,4 +123,10 @@ pub fn input_as_polymer(day : i8) -> polymer::PolymerProgram {
 
 pub fn input_as_risk_map(day: i8) -> pathfind::RiskMap {
     pathfind::RiskMap::from_lines(input_as_lines(day))
+}
+
+pub fn input_as_packet(day : i8) -> packet::Packet {
+    let filename = format!("../data/day-{}.txt", day);
+    let data = fs::read_to_string(filename).expect("Read failure");
+    packet::packet_from_hex_string(&data)
 }
