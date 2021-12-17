@@ -18,6 +18,7 @@ mod folding;
 mod polymer;
 mod pathfind;
 mod packet;
+mod shot;
 
 mod io;
 
@@ -32,6 +33,7 @@ mod challenge {
     use super::displays as displays;
     use super::brackets as brackets;
     use super::pathfind::Pathfinder;
+    use super::shot as shot;
 
     fn challenge_1() {
         let data = io::input_as_list(1);
@@ -233,6 +235,13 @@ mod challenge {
         println!("{}", res);
     }
 
+    fn challenge_33() {
+        let data = io::input_as_target(17);
+        shot::simulate(7, 2, &data);
+        let res = shot::find_highest_y(&data);
+        println!("{}", res);
+    }
+
     pub fn challenge(num : u8) {
         match num {
             1 => challenge_1(),
@@ -267,6 +276,7 @@ mod challenge {
             30 => challenge_30(),
             31 => challenge_31(),
             32 => challenge_32(),
+            33 => challenge_33(),
             _ => () 
         }
     }
