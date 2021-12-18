@@ -19,6 +19,7 @@ mod polymer;
 mod pathfind;
 mod packet;
 mod shot;
+mod snailfish;
 
 mod io;
 
@@ -34,6 +35,7 @@ mod challenge {
     use super::brackets as brackets;
     use super::pathfind::Pathfinder;
     use super::shot as shot;
+    use super::snailfish as snailfish;
 
     fn challenge_1() {
         let data = io::input_as_list(1);
@@ -242,6 +244,18 @@ mod challenge {
         println!("{}", res);
     }
 
+    fn challenge_35() {
+        let data = io::input_as_snailfish(18);
+        let res = snailfish::sum(data);
+        println!("{}", res);
+    }
+
+    fn challenge_36() {
+        let data = io::input_as_snailfish(18);
+        let res = snailfish::greatest_magnitude(data);
+        println!("{}", res);
+    }
+
     pub fn challenge(num : u8) {
         match num {
             1 => challenge_1(),
@@ -277,6 +291,8 @@ mod challenge {
             31 => challenge_31(),
             32 => challenge_32(),
             33 => challenge_33(),
+            35 => challenge_35(),
+            36 => challenge_36(),
             _ => () 
         }
     }

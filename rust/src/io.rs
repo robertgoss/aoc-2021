@@ -18,6 +18,7 @@ use super::pathfind as pathfind;
 use super::polymer as polymer;
 use super::packet as packet;
 use super::shot as shot;
+use super::snailfish as snailfish;
 
 pub fn input_as_list(day: i8) -> Vec<i64> {
     let filename = format!("../data/day-{}.txt", day);
@@ -136,4 +137,13 @@ pub fn input_as_target(day : i8) -> shot::Target {
     let filename = format!("../data/day-{}.txt", day);
     let data = fs::read_to_string(filename).expect("Read failure");
     shot::Target::from_string(&data).unwrap()
+}
+
+pub fn input_as_snailfish(day : i8) -> Vec<snailfish::Snailfish> {
+    let filename = format!("../data/day-{}.txt", day);
+    let file = File::open(filename).expect("Issue opening file");
+    let reader = BufReader::new(&file);
+    reader.lines().map(
+        |s| snailfish::Snailfish::from_string(&s.expect("Read failure")).unwrap()
+    ).collect()
 }
