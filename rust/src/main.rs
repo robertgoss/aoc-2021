@@ -20,6 +20,7 @@ mod pathfind;
 mod packet;
 mod shot;
 mod snailfish;
+mod scans;
 
 mod io;
 
@@ -36,6 +37,7 @@ mod challenge {
     use super::pathfind::Pathfinder;
     use super::shot as shot;
     use super::snailfish as snailfish;
+    use super::scans as scans;
 
     fn challenge_1() {
         let data = io::input_as_list(1);
@@ -256,6 +258,21 @@ mod challenge {
         println!("{}", res);
     }
 
+    fn challenge_37() {
+        let data = io::input_as_scans(19);
+        let consistent_data = scans::make_consistent(data);
+        let res = scans::unique_points(&consistent_data);
+        println!("{}", res);
+    }
+
+    fn challenge_38() {
+        let data = io::input_as_scans(19);
+        let consistent_data = scans::make_consistent(data);
+        let res = scans::max_distance(&consistent_data);
+        println!("{}", res);
+    }
+
+
     pub fn challenge(num : u8) {
         match num {
             1 => challenge_1(),
@@ -293,6 +310,8 @@ mod challenge {
             33 => challenge_33(),
             35 => challenge_35(),
             36 => challenge_36(),
+            37 => challenge_37(),
+            38 => challenge_38(),
             _ => () 
         }
     }

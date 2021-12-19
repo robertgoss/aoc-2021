@@ -19,6 +19,7 @@ use super::polymer as polymer;
 use super::packet as packet;
 use super::shot as shot;
 use super::snailfish as snailfish;
+use super::scans as scans;
 
 pub fn input_as_list(day: i8) -> Vec<i64> {
     let filename = format!("../data/day-{}.txt", day);
@@ -146,4 +147,10 @@ pub fn input_as_snailfish(day : i8) -> Vec<snailfish::Snailfish> {
     reader.lines().map(
         |s| snailfish::Snailfish::from_string(&s.expect("Read failure")).unwrap()
     ).collect()
+}
+
+pub fn input_as_scans(day : i8) -> Vec<scans::Scan> {
+    let filename = format!("../data/day-{}.txt", day);
+    let data = fs::read_to_string(filename).expect("Read failure");
+    scans::scans_from_string(&data)
 }
