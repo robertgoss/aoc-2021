@@ -21,6 +21,7 @@ mod packet;
 mod shot;
 mod snailfish;
 mod scans;
+mod enhance;
 
 mod io;
 
@@ -272,6 +273,22 @@ mod challenge {
         println!("{}", res);
     }
 
+    fn challenge_39() {
+        let mut data = io::input_as_enhance_map(20);
+        data.enhance(2);
+        let res = data.lit();
+        println!("{}", res);
+    }
+
+    fn challenge_40() {
+        let mut data = io::input_as_enhance_map(20);
+        data.enhance(50);
+        let res = data.lit();
+        println!("{}", res);
+    }
+
+
+
 
     pub fn challenge(num : u8) {
         match num {
@@ -312,6 +329,8 @@ mod challenge {
             36 => challenge_36(),
             37 => challenge_37(),
             38 => challenge_38(),
+            39 => challenge_39(),
+            40 => challenge_40(),
             _ => () 
         }
     }
