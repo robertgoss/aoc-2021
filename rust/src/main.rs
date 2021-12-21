@@ -22,6 +22,7 @@ mod shot;
 mod snailfish;
 mod scans;
 mod enhance;
+mod dice;
 
 mod io;
 
@@ -39,6 +40,7 @@ mod challenge {
     use super::shot as shot;
     use super::snailfish as snailfish;
     use super::scans as scans;
+    use super::dice as dice;
 
     fn challenge_1() {
         let data = io::input_as_list(1);
@@ -287,6 +289,20 @@ mod challenge {
         println!("{}", res);
     }
 
+    fn challenge_41() {
+        let mut data = io::input_as_dice_game(21);
+        let rolls = data.play();
+        let res = rolls * data.losing_score();
+        println!("{}", res);
+    }
+
+    fn challenge_42() {
+        let data = io::input_as_dice_game(21);
+        let (p1,p2) = dice::dirac_results(&data);
+        let res = std::cmp::max(p1, p2);
+        println!("{}", res);
+    }
+
 
 
 
@@ -331,6 +347,8 @@ mod challenge {
             38 => challenge_38(),
             39 => challenge_39(),
             40 => challenge_40(),
+            41 => challenge_41(),
+            42 => challenge_42(),
             _ => () 
         }
     }

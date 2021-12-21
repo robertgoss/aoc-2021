@@ -21,6 +21,7 @@ use super::shot as shot;
 use super::snailfish as snailfish;
 use super::scans as scans;
 use super::enhance as enhance;
+use super::dice as dice;
 
 pub fn input_as_list(day: i8) -> Vec<i64> {
     let filename = format!("../data/day-{}.txt", day);
@@ -160,4 +161,10 @@ pub fn input_as_enhance_map(day : i8) -> enhance::Map {
     let filename = format!("../data/day-{}.txt", day);
     let data = fs::read_to_string(filename).expect("Read failure");
     enhance::Map::from_string(&data).unwrap()
+}
+
+pub fn input_as_dice_game(day : i8) -> dice::Game {
+    let filename = format!("../data/day-{}.txt", day);
+    let data = fs::read_to_string(filename).expect("Read failure");
+    dice::Game::from_string(&data)
 }
