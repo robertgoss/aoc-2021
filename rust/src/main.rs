@@ -23,6 +23,7 @@ mod snailfish;
 mod scans;
 mod enhance;
 mod dice;
+mod cubes;
 
 mod io;
 
@@ -303,6 +304,19 @@ mod challenge {
         println!("{}", res);
     }
 
+    fn challenge_43() {
+        let mut data = io::input_as_cubes(22);
+        data.limit();
+        let res = data.switched_on_basic();
+        println!("{}", res);
+    }
+
+    fn challenge_44() {
+        let data = io::input_as_cubes(22);
+        let res = data.switched_on();
+        println!("{}", res);
+    }
+
 
 
 
@@ -349,6 +363,8 @@ mod challenge {
             40 => challenge_40(),
             41 => challenge_41(),
             42 => challenge_42(),
+            43 => challenge_43(),
+            44 => challenge_44(),
             _ => () 
         }
     }
